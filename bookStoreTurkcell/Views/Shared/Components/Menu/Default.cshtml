@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Genre>
+
+<div class="list-group">
+
+    @foreach (var genre in Model)
+    {
+        <a asp-action="Index" asp-controller="Home" asp-route-genreID="@genre.ID" class="list-group-item list-group-item-action list-group-item-warning">@genre.Name</a>
+    }
+
+
+</div>

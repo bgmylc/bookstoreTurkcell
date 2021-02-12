@@ -9,5 +9,10 @@ namespace bookStoreTurkcell.Models.Services
     {
         IList<Publisher> GetPublishers();
         void AddPublisher(Publisher publisher);
+        object GetPublisherByID(int pubID);
+        void UpdatePublisher(Publisher publisher);
+        void DeletePublisher(Publisher publisher);
+        bool pubBook(int pubID);
+        bool DoesPubExist(Publisher publisher);
     }
 }

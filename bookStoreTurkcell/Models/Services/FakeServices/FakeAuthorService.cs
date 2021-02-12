@@ -8,7 +8,29 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
 {
     public class FakeAuthorService : IAuthorService
     {
+        
+
         public void AddAuthor(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool authorBook(int authorID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAuthor(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DoesAuthorExist(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetAuthorByID(int authorID)
         {
             throw new NotImplementedException();
         }
@@ -27,6 +49,13 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
                 new Author{ID=7, Name="Aldous Huxley", Bio="Sıkıntılı", ImageUrl="https://cdn.kidega.com/author/large/aldous-huxley-profil-1y.jpg"}
 
             };
+        }
+
+     
+
+        public void UpdateAuthor(Author author)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -9,5 +9,10 @@ namespace bookStoreTurkcell.Models.Services
     {
         IList<Genre> GetGenres();
         void AddGenre(Genre genre);
+        object GetGenreByID(int genreID);
+        void UpdateGenre(Genre genre);
+        void DeleteGenre(Genre genre);
+        bool genreBook(int genreID);
+        bool DoesGenreExist(Genre genre);
     }
 }

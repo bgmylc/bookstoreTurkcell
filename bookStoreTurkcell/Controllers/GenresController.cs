@@ -30,13 +30,68 @@ namespace bookStoreTurkcell.Controllers
         [HttpPost]
         public IActionResult Create(Genre genre)
         {
-            if (ModelState.IsValid) //If there are no errors; add the genre and return to the list
+            if (genreService.DoesGenreExist(genre))
+            {
+                ViewBag.Message = 0;
+                return View();
+            }
+            else if (ModelState.IsValid) //If there are no errors; add the genre and return to the list
             {
                 genreService.AddGenre(genre);
                 return RedirectToAction(nameof(Index));
             }
 
             return View(); //If there is an error open the same view again
+        }
+
+        public IActionResult Edit(int genreID)
+        {
+            var genre = genreService.GetGenreByID(genreID);
+
+            if (genre == null)
+            {
+                return NotFound();
+            }
+            return View(genre);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Genre genre)
+        {
+            if (ModelState.IsValid)
+            {
+
+                genreService.UpdateGenre(genre);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(genre);
+        }
+
+        public IActionResult Delete(int genreID)
+        {
+            var genre = genreService.GetGenreByID(genreID);
+
+            if (genre == null)
+            {
+                return NotFound();
+            }
+
+            return View(genre);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Genre genre)
+        {
+            if (genreService.genreBook(genre.ID))
+            {
+                ViewBag.Message = 0;
+                return View(genre);
+            }
+
+            genreService.DeleteGenre(genre);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

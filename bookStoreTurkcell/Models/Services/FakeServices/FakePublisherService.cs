@@ -13,6 +13,21 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
             throw new NotImplementedException();
         }
 
+        public void DeletePublisher(Publisher publisher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DoesPubExist(Publisher publisher)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetPublisherByID(int pubID)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<Publisher> GetPublishers()
         {
             return new List<Publisher>
@@ -25,6 +40,16 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
                 new Publisher{ID=16, Name="Can Yayınları", Description="Değişik"},
                 new Publisher{ID=47, Name="İthaki Yayınları", Description="Çılgın"}
             };
+        }
+
+        public bool pubBook(int pubID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdatePublisher(Publisher publisher)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,10 +22,55 @@ namespace bookStoreTurkcell.Models.Services
             dbContext.SaveChanges();
         }
 
+        public void DeletePublisher(Publisher publisher)
+        {
+            dbContext.Remove(publisher);
+            dbContext.SaveChanges();
+        }
+
+        public bool DoesPubExist(Publisher publisher)
+        {
+            bool doesItExist = false;
+            foreach (var pub in dbContext.Publishers)
+            {
+                if (publisher.Name == pub.Name)
+                {
+                    doesItExist = true;
+                }
+            }
+            return doesItExist;
+        }
+
+        public object GetPublisherByID(int pubID)
+        {
+            return dbContext.Publishers.FirstOrDefault(i => i.ID == pubID);
+        }
+
         public IList<Publisher> GetPublishers()
         {
             return dbContext.Publishers.AsNoTracking().ToList();
             
+        }
+
+        public bool pubBook(int pubID)
+        {
+            bool pubBookExist = false;
+            foreach (var book in dbContext.Books)
+            {
+                var bookPub = dbContext.Books.FirstOrDefault(a => a.PublisherID == pubID);
+                if (bookPub != null)
+                {
+                    pubBookExist = true;
+                }
+
+            }
+            return pubBookExist;
+        }
+
+        public void UpdatePublisher(Publisher publisher)
+        {
+            dbContext.Entry(publisher).State = EntityState.Modified;
+            dbContext.SaveChanges();
         }
     }
 }

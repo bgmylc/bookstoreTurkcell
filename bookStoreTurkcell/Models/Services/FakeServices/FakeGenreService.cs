@@ -13,6 +13,26 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
             throw new NotImplementedException();
         }
 
+        public void DeleteGenre(Genre genre)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DoesGenreExist(Genre genre)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool genreBook(int genreID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetGenreByID(int genreID)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<Genre> GetGenres()
         {
            return new List<Genre>
@@ -49,6 +69,11 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
            };
 
 
+        }
+
+        public void UpdateGenre(Genre genre)
+        {
+            throw new NotImplementedException();
         }
     }
 }

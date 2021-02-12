@@ -157,3 +157,14 @@ C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell
 C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Genres\Create.cshtml.g.cs
 C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Publishers\Create.cshtml.g.cs
 C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Publishers\Index.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Books\Edit.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Books\Delete.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Books\Details.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Authors\Edit.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Authors\Details.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Authors\Delete.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Publishers\Edit.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Publishers\Delete.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Publishers\Details.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Genres\Edit.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Genres\Delete.cshtml.g.cs

@@ -11,10 +11,12 @@ namespace bookStoreTurkcell.Controllers
     public class AuthorsController : Controller
     {
         private IAuthorService authorService;
+        private IBookService bookService;
 
-        public AuthorsController(IAuthorService authorService)
+        public AuthorsController(IAuthorService authorService, IBookService bookService)
         {
             this.authorService = authorService;
+            this.bookService = bookService;
         }
         public IActionResult Index()
         {
@@ -30,7 +32,14 @@ namespace bookStoreTurkcell.Controllers
         [HttpPost]
         public IActionResult Create(Author author)
         {
-            if (ModelState.IsValid) //If there are no errors; add the author and return to the list
+
+            if (authorService.DoesAuthorExist(author))
+            {
+                ViewBag.Message = 0;
+                return View(author);
+
+            }
+            else if (ModelState.IsValid) //If there are no errors; add the author and return to the list
             {
                 authorService.AddAuthor(author); 
                 return RedirectToAction(nameof(Index));
@@ -38,5 +47,72 @@ namespace bookStoreTurkcell.Controllers
             
             return View(); //If there is an error open the same view again
         }
+
+
+        public IActionResult Edit(int authorID)
+        {
+            var author = authorService.GetAuthorByID(authorID);
+
+            if (author == null)
+            {
+                return NotFound();
+            }
+            return View(author);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Author author)
+        {
+            if (ModelState.IsValid)
+            {
+
+                authorService.UpdateAuthor(author);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(author);
+        }
+
+        public IActionResult Delete(int authorID)
+        {
+            var author = authorService.GetAuthorByID(authorID);
+
+            if (author == null)
+            {
+                return NotFound();
+            }
+            
+            return View(author);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Author author)
+        {
+            if (authorService.authorBook(author.ID))
+            {
+                ViewBag.Message = 0;
+                return View(author);
+            }
+            
+            authorService.DeleteAuthor(author);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+    
+
+        public IActionResult Details(int authorID)
+        {
+            var author = authorService.GetAuthorByID(authorID);
+
+            if (author == null)
+            {
+                return NotFound();
+            }
+
+            return View(author);
+        }
+
+
     }
 }

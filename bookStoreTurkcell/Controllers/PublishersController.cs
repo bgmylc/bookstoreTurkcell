@@ -31,13 +31,79 @@ namespace bookStoreTurkcell.Controllers
         [HttpPost]
         public IActionResult Create(Publisher publisher)
         {
-            if (ModelState.IsValid) //If there are no errors; add the publisher and return to the list
+            
+            if (publisherService.DoesPubExist(publisher))
+            {
+                ViewBag.Message = 0;
+                return View();
+            }
+            else if (ModelState.IsValid) //If there are no errors; add the publisher and return to the list
             {
                 publisherService.AddPublisher(publisher);
                 return RedirectToAction(nameof(Index));
             }
-
             return View(); //If there is an error open the same view again
+        }
+
+        public IActionResult Edit(int pubID)
+        {
+            var publisher = publisherService.GetPublisherByID(pubID);
+
+            if (publisher == null)
+            {
+                return NotFound();
+            }
+            return View(publisher);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Publisher publisher)
+        {
+            if (ModelState.IsValid)
+            {
+
+                publisherService.UpdatePublisher(publisher);
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(publisher);
+        }
+
+        public IActionResult Delete(int pubID)
+        {
+            var publisher = publisherService.GetPublisherByID(pubID);
+
+            if (publisher == null)
+            {
+                return NotFound();
+            }
+
+            return View(publisher);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Publisher publisher)
+        {
+            if (publisherService.pubBook(publisher.ID))
+            {
+                ViewBag.Message = 0;
+                return View(publisher);
+            }
+            publisherService.DeletePublisher(publisher);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        public IActionResult Details(int pubID)
+        {
+            var publisher = publisherService.GetPublisherByID(pubID);
+
+            if (publisher == null)
+            {
+                return NotFound();
+            }
+
+            return View(publisher);
         }
     }
 }

@@ -10,6 +10,22 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
             throw new NotImplementedException();
         }
 
+       
+        public void DeleteBook(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DoesBookExist(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object GetBookByID(int? bookID)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Book> GetBooks()
         {
             return new List<Book>
@@ -53,6 +69,11 @@ namespace bookStoreTurkcell.Models.Services.FakeServices
         }
 
         public List<Book> GetBooksByGenreID(int genreID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateBook(Book book)
         {
             throw new NotImplementedException();
         }

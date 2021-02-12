@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Bio)
             </td>
             <td>
-                @Html.ActionLink("Düzenle", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detaylar", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Düzenle", "Edit", new { authorID = item.ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { authorID = item.ID }) |
+                @Html.ActionLink("Sil", "Delete", new { authorID = item.ID })
             </td>
         </tr>
 }

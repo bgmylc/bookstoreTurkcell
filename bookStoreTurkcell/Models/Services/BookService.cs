@@ -23,15 +23,66 @@ namespace bookStoreTurkcell.Models.Services
             dbContext.SaveChanges();
         }
 
+
+        public bool BookExist(int bookID)
+        {
+            return dbContext.Books.Any(b => b.ID == bookID);
+        }
+
+        public void DeleteBook(Book book)
+        {
+            dbContext.Remove(book);
+            dbContext.SaveChanges();
+        }
+
+        public bool DoesBookExist(Book book)
+        {
+            bool doesItExist = false;
+            foreach (var existingBook in dbContext.Books)
+            {
+                if (book.ISBN == existingBook.ISBN)
+                {
+                    doesItExist = true;
+                }
+            }
+            return doesItExist;
+        }
+
+        public object GetBookByID(int? bookID)
+        {
+            return dbContext.Books.Include(a => a.Author)
+                                  .Include(p => p.Publisher)
+                                  .Include(g => g.Genre)
+                                  .FirstOrDefault(i => i.ID == bookID);
+        }
+
         public List<Book> GetBooks()
         {
-            return dbContext.Books.AsNoTracking().ToList();
+            return dbContext.Books.Include(a => a.Author)
+                                  .Include(p => p.Publisher)
+                                  .Include(g => g.Genre)
+                                  .AsNoTracking().ToList();
             
         }
 
         public List<Book> GetBooksByGenreID(int genreID)
         {
-            return dbContext.Books.AsNoTracking().Where(b => b.GenreID == genreID).ToList();
+            return dbContext.Books.Include(a => a.Author)
+                                  .Include(p => p.Publisher)
+                                  .Include(g => g.Genre)
+                                  .AsNoTracking().Where(b => b.GenreID == genreID).ToList();
         }
+
+        public int UpdateBook(Book book)
+        {
+           dbContext.Entry(book).State = EntityState.Modified;
+           return dbContext.SaveChanges();
+
+        }
+
+        
+        
+
+
     }
 }

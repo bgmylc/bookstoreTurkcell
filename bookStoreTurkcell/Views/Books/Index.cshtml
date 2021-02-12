@@ -31,22 +31,10 @@
                 @Html.DisplayNameFor(model => model.SupplyTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OriginalName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ISBN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CoverType)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Dimensions)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PublishDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PageNumber)
             </th>
             <th></th>
         </tr>
@@ -73,27 +61,15 @@
                 @Html.DisplayFor(modelItem => item.SupplyTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OriginalName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ISBN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoverType)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Dimensions)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PublishDate)
-            </td>
+            </td>     
             <td>
-                @Html.DisplayFor(modelItem => item.PageNumber)
-            </td>
-            <td>
-                @Html.ActionLink("Düzenle", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detaylar", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Düzenle", "Edit", new { bookID=item.ID }) |
+                @Html.ActionLink("Detaylar", "Details", new { bookID = item.ID }) |
+                @Html.ActionLink("Sil", "Delete", new { bookID = item.ID })
             </td>
         </tr>
 }

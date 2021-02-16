@@ -17,6 +17,8 @@ namespace bookStoreTurkcell.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Genre> Genres{ get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,6 +36,9 @@ namespace bookStoreTurkcell.Data
                                        .WithMany(g => g.Books)
                                        .HasForeignKey(k => k.GenreID);
 
+            modelBuilder.Entity<User>().HasOne(r => r.UserRole)
+                                       .WithMany(u => u.Users)
+                                       .HasForeignKey(k => k.UserRoleID);
 
             base.OnModelCreating(modelBuilder);
         }

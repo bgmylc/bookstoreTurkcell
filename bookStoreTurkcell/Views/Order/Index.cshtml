@@ -1,0 +1,47 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Sepetim</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="card border-success mb-3">
+        <div class="card-header">Sipariş Tutarınız</div>
+        <div class="card-body text-success">
+            <h5 class="card-title">Sayın @User.Identity.Name </h5>
+            <p class="card-text">Siparişinizin Tutarı = @ViewBag.TotalValue ₺</p>
+            @if (ViewBag.TotalValue >= 100)
+            {
+                <p class="card-text">Kargo Tutarı = 0 ₺ </p>
+            }
+            else
+            {
+                <p class="card-text">Kargo Tutarı = 7 ₺ </p>
+            }
+
+        </div>
+    </div>
+    <h4></h4>
+    <h5>Ödeme Tipi</h5>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+        <label class="form-check-label" for="inlineCheckbox1">Banka Kartı/Kredi Kartı ile 3D Güvenli Ödeme</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+        <label class="form-check-label" for="inlineCheckbox2">Banka Havalesi ile Ödeme</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+        <label class="form-check-label" for="inlineCheckbox3">Kapıda Ödeme</label>
+    </div>
+    <h4></h4>
+    <a class="btn btn-lg btn-outline-success">Ödemeyi Tamamla</a>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Üye olmadan sipariş tamamlama işlemlerini yapamazsınız. <a asp-controller="Account" asp-action="Login"  class="alert-link"> Lütfen giriş yapın. </a>
+    </div>
+}

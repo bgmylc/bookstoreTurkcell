@@ -1,9 +1,10 @@
-﻿using System;
+﻿using bookStoreTurkcell.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bookStoreTurkcell.Models.Services
+namespace bookStoreTurkcell.Services
 {
     public interface IAuthorService
     {

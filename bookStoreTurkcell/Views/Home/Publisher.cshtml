@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Publisher>
+@{
+    ViewData["Title"] = "Publisher";
+}
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>Yayınevi Adı</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pub in Model)
+        {
+            <tr>
+                <td>@pub.Name</td>
+                <td>
+                    <a asp-route-ID="@pub.ID" class="btn btn-danger"> Detaylar </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<ul class="pagination">
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <li class="page-item"><a class="page-link" asp-action="Publisher" asp-controller="Home" asp-route-page="@i">@i</a></li>
+    }
+
+</ul>

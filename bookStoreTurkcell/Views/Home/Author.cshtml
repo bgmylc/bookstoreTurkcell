@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Author>
+@{
+    ViewData["Title"] = "Author";
+    var count = 0;
+}
+
+
+<div class="row">
+    @foreach (var author in Model)
+    {
+        @if (count != 0 && count % 4 == 0)
+        {
+        @:</div>
+        @:<div class="row">
+        }
+        <div class="col-3">
+            <partial name="_AuthorCard" model="@author" />
+        </div>
+        count++;
+    }
+</div>
+
+<ul class="pagination">
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <li class="page-item"><a class="page-link" asp-action="Author" asp-controller="Home" asp-route-page="@i">@i</a></li>
+    }
+
+</ul>
+

@@ -1,9 +1,11 @@
 using bookStoreTurkcell.Data;
-using bookStoreTurkcell.Models.Services;
-using bookStoreTurkcell.Models.Services.FakeServices;
+using bookStoreTurkcell.Services;
+using bookStoreTurkcell.Services.FakeServices;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,8 +33,20 @@ namespace bookStoreTurkcell
             services.AddTransient<IGenreService, GenreService>();
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IPublisherService, PublisherService>();
+            services.AddTransient<IUserService, UserService>();
+            
+
             services.AddControllersWithViews();
             services.AddDbContext<bookStoreTurkcellDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("db")));
+            services.AddSession();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(option =>
+                    {
+                        option.LoginPath = "/Account/Login";
+                    
+                    });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +67,9 @@ namespace bookStoreTurkcell
 
             app.UseRouting();
 
+            app.UseSession();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

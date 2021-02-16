@@ -21,10 +21,74 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-5">
+                                    <li class="nav-item">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            @if (User.IsInRole("Admin"))
+                                            {
+
+                                                <div class="dropdown">
+                                                    <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
+                                                        Hoşgeldin @User.Identity.Name, neler yapacaksın?
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Çıkış Yap</a></li>
+                                                        <div class="dropdown-divider"></div>
+                                                        <li><a class="dropdown-item" asp-controller="Books" asp-action="Index">Kitap İşlemleri</a></li>
+                                                        <li><a class="dropdown-item" asp-controller="Authors" asp-action="Index">Yazar İşlemleri</a></li>
+                                                        <li><a class="dropdown-item" asp-controller="Publishers" asp-action="Index">Yayınevi İşlemleri</a></li>
+                                                        <li><a class="dropdown-item" asp-controller="Genres" asp-action="Index">Tür İşlemleri</a></li>
+                                                    </ul>
+                                                </div>
+                                            }
+                                            else if (User.IsInRole("Standard User"))
+                                            {
+                                                <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Logout">
+                                                    Merhaba @User.Identity.Name :) <strong> (Çıkış Yap)</strong>
+                                                </a>
+
+                                            }
+
+                                        }
+
+                                        else
+                                        {
+                                            <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">
+                                                Giriş Yap
+                                            </a>
+                                        }
+                                    </li>
+                                </div>
+                                <div class="col">
+                                    <li class="nav-item">
+                                        <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Author">
+                                            Yazarlar
+                                        </a>
+                                    </li>
+                                </div>
+                                <div class="col">
+                                    <li class="nav-item">
+                                        <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Publisher">
+                                            Yayınevleri
+                                        </a>
+                                    </li>
+                                </div>
+                                <div class="col">
+                                    <li class="nav-item ">
+                                        <a class="btn btn-info" asp-area="" asp-controller="Cart" asp-action="Index">
+                                            Sepetim
+                                        </a>
+                                    </li>
+                                </div>
+                                    </div>           
+                            </div>
+                        </div>
                     </ul>
+                  
                 </div>
             </div>
         </nav>

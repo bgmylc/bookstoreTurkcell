@@ -1,5 +1,6 @@
 ﻿using bookStoreTurkcell.Models;
-using bookStoreTurkcell.Models.Services;
+using bookStoreTurkcell.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace bookStoreTurkcell.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class GenresController : Controller
     {
         private IGenreService genreService;

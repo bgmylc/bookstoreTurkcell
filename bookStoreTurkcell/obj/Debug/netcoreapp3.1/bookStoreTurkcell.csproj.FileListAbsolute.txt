@@ -168,3 +168,9 @@ C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell
 C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Publishers\Details.cshtml.g.cs
 C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Genres\Edit.cshtml.g.cs
 C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Genres\Delete.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Home\Author.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AuthorCard.cshtml.g.cs
+C:\Users\LENOVO\source\repos\turkcellGelecegiYazanlarNET\Proje\bookStoreTurkcell\bookStoreTurkcell\obj\Debug\netcoreapp3.1\Razor\Views\Home\Publisher.cshtml.g.cs

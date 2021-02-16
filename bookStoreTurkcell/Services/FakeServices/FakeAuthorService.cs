@@ -1,10 +1,10 @@
-﻿using bookStoreTurkcell.Models.Services;
+﻿using bookStoreTurkcell.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bookStoreTurkcell.Models.Services.FakeServices
+namespace bookStoreTurkcell.Services.FakeServices
 {
     public class FakeAuthorService : IAuthorService
     {

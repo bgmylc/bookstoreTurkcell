@@ -1,11 +1,43 @@
-﻿@model IEnumerable<Genre>
+﻿@model dynamic
 
 <div class="list-group">
 
-    @foreach (var genre in Model)
-    {
-        <a asp-action="Index" asp-controller="Home" asp-route-genreID="@genre.ID" class="list-group-item list-group-item-action list-group-item-warning">@genre.Name</a>
-    }
-
-
+    <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+            Türler
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var genre in Model.Genres)
+            {
+                <li><a asp-action="Index" asp-controller="Home" asp-route-genreID="@genre.ID" class="list-group-item list-group-item-action list-group-item-warning">@genre.Name</a></li>
+            }
+        </ul>
+    </div>
+    <h5> </h5>
+    <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+            Yazarlar
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var author in Model.Authors)
+            {
+                <li><a asp-action="Index" asp-controller="Home" asp-route-authorID="@author.ID" class="list-group-item list-group-item-action list-group-item-warning">@author.Name</a></li>
+            }
+        </ul>
+    </div>
+    <h5> </h5>
+    <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">
+            Yayınevleri
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var pub in Model.Publishers)
+            {
+                <li><a asp-action="Index" asp-controller="Home" asp-route-pubID="@pub.ID" class="list-group-item list-group-item-action list-group-item-warning">@pub.Name</a></li>
+            }
+        </ul>
+    </div>
 </div>

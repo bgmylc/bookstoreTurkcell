@@ -1,11 +1,12 @@
 ﻿using bookStoreTurkcell.Data;
+using bookStoreTurkcell.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bookStoreTurkcell.Models.Services
+namespace bookStoreTurkcell.Services
 {
     public class GenreService : IGenreService
     {
@@ -31,13 +32,10 @@ namespace bookStoreTurkcell.Models.Services
         public bool DoesGenreExist(Genre genre)
         {
             bool doesItExist = false;
-            foreach (var gen in dbContext.Genres)
-            {
-                if (genre.Name == gen.Name)
-                {
-                    doesItExist = true;
-                }
-            }
+
+            var existingGenre = dbContext.Genres.FirstOrDefault(g => g.Name == genre.Name);
+            doesItExist = existingGenre == null ? false : true;
+
             return doesItExist;
         }
 

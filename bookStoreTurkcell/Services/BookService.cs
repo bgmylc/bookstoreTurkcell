@@ -1,12 +1,13 @@
 ﻿using bookStoreTurkcell.Data;
-using bookStoreTurkcell.Models.Services;
+using bookStoreTurkcell.Models;
+using bookStoreTurkcell.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bookStoreTurkcell.Models.Services
+namespace bookStoreTurkcell.Services
 {
     public class BookService : IBookService
     {
@@ -23,12 +24,6 @@ namespace bookStoreTurkcell.Models.Services
             dbContext.SaveChanges();
         }
 
-
-        public bool BookExist(int bookID)
-        {
-            return dbContext.Books.Any(b => b.ID == bookID);
-        }
-
         public void DeleteBook(Book book)
         {
             dbContext.Remove(book);
@@ -38,17 +33,19 @@ namespace bookStoreTurkcell.Models.Services
         public bool DoesBookExist(Book book)
         {
             bool doesItExist = false;
-            foreach (var existingBook in dbContext.Books)
-            {
-                if (book.ISBN == existingBook.ISBN)
-                {
-                    doesItExist = true;
-                }
-            }
+
+            var existingBook = dbContext.Books.FirstOrDefault(b => b.ISBN == book.ISBN);
+            doesItExist = existingBook == null ? false : true;
+
             return doesItExist;
         }
 
-        public object GetBookByID(int? bookID)
+        public Book GetBookByID(int bookID)
+        {
+            return dbContext.Books.Find(bookID);
+        }
+
+        public Book GetBookDetailsByID(int? bookID)
         {
             return dbContext.Books.Include(a => a.Author)
                                   .Include(p => p.Publisher)
@@ -65,12 +62,28 @@ namespace bookStoreTurkcell.Models.Services
             
         }
 
+        public List<Book> GetBooksByAuthorID(int authorID)
+        {
+            return dbContext.Books.Include(a => a.Author)
+                                  .Include(p => p.Publisher)
+                                  .Include(g => g.Genre)
+                                  .AsNoTracking().Where(b => b.AuthorID == authorID).ToList();
+        }
+
         public List<Book> GetBooksByGenreID(int genreID)
         {
             return dbContext.Books.Include(a => a.Author)
                                   .Include(p => p.Publisher)
                                   .Include(g => g.Genre)
                                   .AsNoTracking().Where(b => b.GenreID == genreID).ToList();
+        }
+
+        public List<Book> GetBooksByPubID(int pubID)
+        {
+            return dbContext.Books.Include(a => a.Author)
+                                  .Include(p => p.Publisher)
+                                  .Include(g => g.Genre)
+                                  .AsNoTracking().Where(b => b.PublisherID == pubID).ToList();
         }
 
         public int UpdateBook(Book book)

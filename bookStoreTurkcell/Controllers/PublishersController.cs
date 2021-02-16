@@ -1,5 +1,6 @@
 ﻿using bookStoreTurkcell.Models;
-using bookStoreTurkcell.Models.Services;
+using bookStoreTurkcell.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace bookStoreTurkcell.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class PublishersController : Controller
     {
         private IPublisherService publisherService;
@@ -29,7 +31,7 @@ namespace bookStoreTurkcell.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Publisher publisher)
+        public IActionResult Create([Bind("Name, Price")]Publisher publisher)
         {
             
             if (publisherService.DoesPubExist(publisher))

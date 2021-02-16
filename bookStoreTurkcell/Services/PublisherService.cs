@@ -1,11 +1,12 @@
 ﻿using bookStoreTurkcell.Data;
+using bookStoreTurkcell.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bookStoreTurkcell.Models.Services
+namespace bookStoreTurkcell.Services
 {
     public class PublisherService : IPublisherService
     {
@@ -31,13 +32,10 @@ namespace bookStoreTurkcell.Models.Services
         public bool DoesPubExist(Publisher publisher)
         {
             bool doesItExist = false;
-            foreach (var pub in dbContext.Publishers)
-            {
-                if (publisher.Name == pub.Name)
-                {
-                    doesItExist = true;
-                }
-            }
+
+            var existingPub = dbContext.Publishers.FirstOrDefault(p => p.Name == publisher.Name);
+            doesItExist = existingPub == null ? false : true;
+
             return doesItExist;
         }
 

@@ -52,22 +52,27 @@ namespace bookStoreTurkcell.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CoverType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dimensions")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Discount")
+                        .IsRequired()
                         .HasColumnType("float");
 
                     b.Property<int>("GenreID")
                         .HasColumnType("int");
 
-                    b.Property<long?>("ISBN")
-                        .HasColumnType("bigint");
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)")
+                        .HasMaxLength(13);
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -80,12 +85,14 @@ namespace bookStoreTurkcell.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PageNumber")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("PublishDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PublisherID")
@@ -95,6 +102,7 @@ namespace bookStoreTurkcell.Migrations
                         .HasColumnType("float");
 
                     b.Property<int?>("SupplyTime")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -143,6 +151,62 @@ namespace bookStoreTurkcell.Migrations
                     b.ToTable("Publishers");
                 });
 
+            modelBuilder.Entity("bookStoreTurkcell.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DeliveryAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserRoleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserRoleID");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("bookStoreTurkcell.Models.UserRole", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("bookStoreTurkcell.Models.Book", b =>
                 {
                     b.HasOne("bookStoreTurkcell.Models.Author", "Author")
@@ -160,6 +224,15 @@ namespace bookStoreTurkcell.Migrations
                     b.HasOne("bookStoreTurkcell.Models.Publisher", "Publisher")
                         .WithMany("Books")
                         .HasForeignKey("PublisherID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("bookStoreTurkcell.Models.User", b =>
+                {
+                    b.HasOne("bookStoreTurkcell.Models.UserRole", "UserRole")
+                        .WithMany("Users")
+                        .HasForeignKey("UserRoleID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

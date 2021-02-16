@@ -1,12 +1,21 @@
 ﻿@model Book
+@{ 
+    var request = ViewContext.HttpContext.Request;
+    string returnURLValue = request.QueryString.HasValue ?
+        $"{request.Path}{request.QueryString}" : request.Path.ToString();
+
+}
 <div class="card h-100 text-white bg-secondary mb-3">
     <img src="@Model.ImageUrl" class="card-img-top img-thumbnail " alt="Kitap">
     <div class="card-body">
         <h5 class="card-title">@Model.Name</h5>
         <h6 class="card-text">@Model.Author.Name</h6>
         <h6 class="card-text">@Model.Publisher.Name</h6>
-        <p class="card-text">@Model.Description</p>
         <p class="card-text"><s>@Model.Price</s> yerine <strong>@(Model.Price * (decimal)(1-Model.Discount))</strong></p>
-        <a href="#" class="btn btn-primary">Sepete Ekle</a>
+        <form asp-action="AddToCart" asp-controller="Cart" asp-route-bookID="@Model.ID" method="post">
+            <input type="hidden" name="returnURL" value="@returnURLValue"/>
+            <button type="submit" class="btn btn-warning">Sepete Ekle</button>
+        </form>
+
     </div>
 </div>

@@ -1,5 +1,6 @@
 ﻿using bookStoreTurkcell.Models;
-using bookStoreTurkcell.Models.Services;
+using bookStoreTurkcell.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace bookStoreTurkcell.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BooksController : Controller
     {
         private IBookService bookService;
@@ -115,7 +117,7 @@ namespace bookStoreTurkcell.Controllers
 
         public IActionResult Edit(int bookID)
         {
-            var book = bookService.GetBookByID(bookID);
+            var book = bookService.GetBookDetailsByID(bookID);
            
             if (book == null)
             {
@@ -158,7 +160,7 @@ namespace bookStoreTurkcell.Controllers
 
         public IActionResult Delete(int bookID)
         {
-            var book = bookService.GetBookByID(bookID);
+            var book = bookService.GetBookDetailsByID(bookID);
 
             if (book == null)
             {
@@ -180,7 +182,7 @@ namespace bookStoreTurkcell.Controllers
 
         public IActionResult Details(int bookID)
         {
-            var book = bookService.GetBookByID(bookID);
+            var book = bookService.GetBookDetailsByID(bookID);
 
             if (book == null)
             {

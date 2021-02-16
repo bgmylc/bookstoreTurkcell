@@ -1,11 +1,12 @@
 ﻿using bookStoreTurkcell.Data;
+using bookStoreTurkcell.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bookStoreTurkcell.Models.Services
+namespace bookStoreTurkcell.Services
 {
     public class AuthorService : IAuthorService
     {
@@ -48,14 +49,11 @@ namespace bookStoreTurkcell.Models.Services
         {
 
             bool doesItExist = false;
-            foreach (var existingAuthor in dbContext.Authors)
-            {
-                if (author.Name == existingAuthor.Name)
-                {
-                    doesItExist = true;
-                }
-            }
-            return doesItExist;
+
+            var existingAuthor = dbContext.Authors.FirstOrDefault(a => a.Name == author.Name);
+            doesItExist = existingAuthor == null ? false : true;
+
+            return doesItExist; ;
         }
 
         public object GetAuthorByID(int authorID)
